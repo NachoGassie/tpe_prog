@@ -2,7 +2,7 @@ package tpe.composite;
 
 import java.util.ArrayList;
 
-public class GruposAlum<T> extends Elem<T>{
+public class GruposAlum extends Elem{
     private ArrayList<Elem> elems;
 
 
@@ -10,7 +10,7 @@ public class GruposAlum<T> extends Elem<T>{
         elems = new ArrayList<>();
     }
 
-    public void addAlum(Elem<T> e){
+    public void addAlum(Elem e){
         elems.add(e);
     }
 

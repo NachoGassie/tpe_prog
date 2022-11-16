@@ -12,10 +12,10 @@ public class Main {
         Lista <Alumno> list = new Lista<>(comNom);
 
         // list.setC(new CompInverso<>(com));
-        Alumno <Object> p1 = new Alumno<>(5, 10, "a");
-        Alumno <Object> p2 = new Alumno<>(10,5, "b");
-        Alumno p3 = new Alumno<>(7,1, "c");
-        Alumno p4 = new Alumno<>(15, 11, "d");
+        Alumno p1 = new Alumno(5, 10, "a");
+        Alumno p2 = new Alumno(10,5, "b");
+        Alumno p3 = new Alumno(7,1, "c");
+        Alumno p4 = new Alumno(15, 11, "d");
 
         list.addOrdenado(p1);
         list.addOrdenado(p3);

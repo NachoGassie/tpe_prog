@@ -1,7 +1,5 @@
 package tpe.comparadores;
 
-import java.util.Comparator;
-
 import tpe.composite.Alumno;
 
 public class CompAlumEdad extends CompCompuesto{

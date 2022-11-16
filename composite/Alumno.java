@@ -3,7 +3,7 @@ package tpe.composite;
 import java.util.ArrayList;
 // import tpe.Lista;
 
-public class Alumno <T> extends Elem<T>{
+public class Alumno extends Elem{
     private String nombre;
     private String apellido;
     private int edad;
@@ -56,7 +56,7 @@ public class Alumno <T> extends Elem<T>{
 
     public boolean equals(Object o1){
         try {
-            Alumno <T> otro = ((Alumno) o1);
+            Alumno otro = ((Alumno) o1);
 
             return this.edad == otro.getEdad();
         } catch (Exception e) {
