@@ -21,18 +21,18 @@ public class Lista <T> implements Iterable <T>{
         }
         else{
             Nodo<T> anterior = null;
-            Nodo<T> temp = this.raiz;
+            Nodo<T> cursor = this.raiz;
 
-            while(temp != null && c.compare(temp.getValor(), obj) < 0) {
-                anterior = temp;
-                temp = temp.getSiguiente();
+            while(cursor != null && c.compare(cursor.getValor(), obj) < 0) {
+                anterior = cursor;
+                cursor = cursor.getSiguiente();
             }
-            if(temp == null && anterior != null){
+            if(cursor == null && anterior != null){
                 anterior.setSiguiente(n);
             }
             else{
-                n.setSiguiente(temp);
-                if(temp == this.raiz){
+                n.setSiguiente(cursor);
+                if(cursor == this.raiz){
                     this.raiz = n;
                 }
                 else{
@@ -44,11 +44,11 @@ public class Lista <T> implements Iterable <T>{
     }
     //Ordenar por otro parametro
     private void reOrdenar(){
-        Nodo <T> aux = raiz;
+        Nodo <T> cursor = raiz;
         raiz = null;
-        while (aux != null) {
-            addOrdenado(aux.getValor());
-            aux = aux.getSiguiente();
+        while (cursor != null) {
+            addOrdenado(cursor.getValor());
+            cursor = cursor.getSiguiente();
         }
     }
     //Delete por pos;
