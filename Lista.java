@@ -12,78 +12,66 @@ public class Lista <T> implements Iterable <T>{
         this.c = c;
     }
     
-    public void addOrd(T obj){
-        Nodo <T> puntero;
-        Nodo <T> siguiente;
-        Nodo <T> nuevo = new Nodo<T>(obj);
+    //Add Ordenado
+    public void addOrdenado(T obj){
 
-        if (isVacia()){
-            raiz = nuevo;
-            nuevo.setSiguiente(null);
-            size++;
+        Nodo <T> n = new Nodo<T>(obj);
+        if(this.isVacia()){
+            this.raiz = n;
         }
         else{
-            // MiIterador<T> it = new MiIterador<>(raiz);
-            puntero = raiz;
-            while (puntero != null) {
-                int cont = 0;
-                siguiente = puntero.getSiguiente();
+            Nodo<T> anterior = null;
+            Nodo<T> temp = this.raiz;
 
-                //Si la raiz es menor o igual que el nuevo nodo, dicho nodo se vuelve la raíz;
-                if (c.compare(nuevo.getValor(), puntero.getValor()) <= 0) {
-                    nuevo.setSiguiente(raiz);
-                    raiz = nuevo;
-                    nuevo.setPos(0);
-                    size++;
-                    break;
+            while(temp != null && c.compare(temp.getValor(), obj) < 0) {
+                anterior = temp;
+                temp = temp.getSiguiente();
+            }
+            if(temp == null && anterior != null){
+                anterior.setSiguiente(n);
+            }
+            else{
+                n.setSiguiente(temp);
+                if(temp == this.raiz){
+                    this.raiz = n;
                 }
-                //Si el nodo es mayor, va al final;
-                else if(c.compare(nuevo.getValor(), puntero.getValor()) > 0 && (siguiente == null)){
-                    puntero.setSiguiente(nuevo);
-                    nuevo.setSiguiente(null);
-                    nuevo.setPos(size);
-                    size++;
-                    break;
-                }
-                //Si el nodo va entre medio de dos nodos;
-                else if(c.compare(nuevo.getValor(), puntero.getValor()) > 0 && 
-                        c.compare(nuevo.getValor(), siguiente.getValor()) <= 0 ){
-                    nuevo.setSiguiente(siguiente);  
-                    nuevo.setPos(cont);
-                    size++;
-                    break; 
-                }
-                //Sigo iterando;
                 else{
-                    puntero = puntero.getSiguiente();
-                    cont++;
+                    anterior.setSiguiente(n);
                 }
             }
         }
+        this.size++;
     }
     //Ordenar por otro parametro
     private void reOrdenar(){
         Nodo <T> aux = raiz;
         raiz = null;
         while (aux != null) {
-            addOrd(aux.getValor());
+            addOrdenado(aux.getValor());
             aux = aux.getSiguiente();
         }
     }
-
-    //Delete por objeto;
-    public void delete(T obj){
-        if (!isVacia()) {
-            Nodo <T> cursor = raiz;
-            Nodo <T> sig = cursor.getSiguiente();
-
-            while (sig != null) {
-                if (sig.getValor().equals(obj)) {
-                    sig.setSiguiente(sig.getSiguiente());
-                }
-            }
+    //Delete por pos;
+    public void eliminarPos(int pos){
+        if (this.isVacia() || (pos< 0  || pos >= getSize())) {
+            return;
         }
+        else if (pos == 0) {
+            raiz = raiz.getSiguiente();
+            return;
+        } 
+        else{
+            int contador = 0;
+            Nodo <T> temporal = raiz;
+            while (contador < pos-1){
+                temporal = temporal.getSiguiente();
+                contador++;
+            }
+            temporal.setSiguiente(temporal.getSiguiente().getSiguiente());
+        }
+        size--;
     }
+    //Delete por obj;
     public void eliminarOcurrencia(T obj){
         Nodo <T> cursor = raiz;
         Nodo <T> siguiente = cursor.getSiguiente();
@@ -108,18 +96,23 @@ public class Lista <T> implements Iterable <T>{
         ant.setSiguiente(siguiente);
 
     }
+    //Obtener Posicion
+    public int obtenerPos(T obj){
+        int pos = 0;
+        if (!isVacia()) {
+            
+            Nodo <T> nodo = raiz;
+            while(nodo.getSiguiente() != null && ! nodo.getValor().equals(obj)){
+                nodo = nodo.getSiguiente();
+                pos++;
+            }
 
+            if (nodo.getValor().equals(obj)) 
+                return pos;
+        }
+        return -1;
+    }
 
-
-
-    //Mostrar, Innecesario por la implementación de iterable.
-    // public void show(){
-    //     Nodo <T> i = raiz;
-    //     while (i != null) {
-    //         System.out.println(i.getValor());
-    //         i = i.getSiguiente();
-    //     }
-    // }
     //isVacia
     private boolean isVacia(){
         return raiz == null;
@@ -143,5 +136,6 @@ public class Lista <T> implements Iterable <T>{
         MiIterador <T> cursor = new MiIterador<>(raiz);
         return cursor;
     }
+
 }
 

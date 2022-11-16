@@ -2,7 +2,6 @@ package tpe;
 
 public class Nodo <T> {
     private T valor;
-    private int pos;
     private Nodo <T> siguiente;
 
     public Nodo(T valor){
@@ -22,20 +21,5 @@ public class Nodo <T> {
     public void setSiguiente(Nodo <T> siguiente) {
         this.siguiente = siguiente;
     }
-
-    public int getPos() {
-        return pos;
-    }
-    public void setPos(int pos) {
-        this.pos = pos;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Nodo [pos=" + pos + "]";
-    }
-
-    
 
 }

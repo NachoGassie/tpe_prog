@@ -7,20 +7,21 @@ public class Alumno <T> extends Elem<T>{
     private String nombre;
     private String apellido;
     private int edad;
-    private long dni;
+    private int dni;
     // private Lista <String> palabrasClave;
     private ArrayList <String> palabrasClave;
 
-    public Alumno(String nombre, String apellido, int edad, long dni) {
+    public Alumno(String nombre, String apellido, int edad, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.dni = dni;
     }
 
-    public Alumno(int edad, int dni) {
+    public Alumno(int edad, int dni, String nombre) {
         this.edad = edad;
         this.dni = dni;
+        this.nombre = nombre;
     }
 
     public int getCantAlum(){
@@ -49,23 +50,26 @@ public class Alumno <T> extends Elem<T>{
     public int getEdad() {
         return edad;
     }
-    public long getDni() {
+    public int getDni() {
         return dni;
     }
 
-    // public boolean equals(Object o1){
-    //     try {
-    //         Alumno <T> otro = (Alumno (o1));
-    //         return this.edad == otro.getEdad();
-    //     } catch (Exception e) {
-    //         return false;
-    //     }
-    // }
+    public boolean equals(Object o1){
+        try {
+            Alumno <T> otro = ((Alumno) o1);
 
-
+            return this.edad == otro.getEdad();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     @Override
     public String toString() {
-        return "Alumno [edad=" + edad + ", dni=" + dni + "]";
+        return "Alumno [nombre=" + nombre + ", edad=" + edad + ", dni=" + dni + "]";
     }
+
+
+
+    
 }
