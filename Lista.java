@@ -72,30 +72,67 @@ public class Lista <T> implements Iterable <T>{
         size--;
     }
     //Delete por obj;
-    public void eliminarOcurrencia(T obj){
-        Nodo <T> cursor = raiz;
-        Nodo <T> siguiente = cursor.getSiguiente();
-        Nodo <T> ant = null;
 
-        while (siguiente != null && !siguiente.getValor().equals(obj)) {
+    public void eliminarOcur(T obj){
+       Nodo <T> cursor = raiz;
+       Nodo <T> siguiente = cursor.getSiguiente();
+       Nodo <T> ant = null;
 
-            if (raiz.getValor().equals(obj)) 
-                raiz = cursor;
-            else
-                ant = cursor;
-            
-            while(siguiente != null && siguiente.getValor().equals(obj)){
-                cursor = siguiente;
-                siguiente = siguiente.getSiguiente();
+        if (this.isVacia()) {
+            return;
+        }
+
+        while (siguiente != null){
+
+            while (raiz.getValor().equals(obj)){
+                raiz = raiz.getSiguiente();
+                cursor = raiz;
+                siguiente = cursor.getSiguiente();
+            }
+
+            while (cursor.getSiguiente().equals(obj)){
+                cursor.setSiguiente(siguiente.getSiguiente());
             }
 
             cursor = siguiente;
-            siguiente = siguiente.getSiguiente();
-        }
-
-        ant.setSiguiente(siguiente);
-
+            siguiente = cursor.getSiguiente();
+        }    
+        
     }
+    
+    // public void eliminarOcurrencia(T obj){
+    //     Nodo <T> cursor = raiz;
+    //     Nodo <T> siguiente = cursor.getSiguiente();
+    //     Nodo <T> ant = null;
+
+    //     while (siguiente != null /*&& !siguiente.getValor().equals(obj)*/) {
+
+    //         if (raiz.getValor().equals(obj)) {
+    //             raiz = cursor.getSiguiente();
+    //             cursor = raiz; 
+    //         }
+    //         else{
+    //             ant = cursor;
+            
+    //             while(siguiente != null && siguiente.getValor().equals(obj)){
+    //                 cursor = siguiente;
+    //                 siguiente = siguiente.getSiguiente();
+    //             }
+                
+    //             if (siguiente != null) {
+    //                 cursor = siguiente;
+    //                 siguiente = siguiente.getSiguiente();
+    //             }
+
+    
+    //             if (ant != null) 
+    //                 ant.setSiguiente(siguiente);
+    //         }
+    //     }
+    // }
+
+
+
     //Obtener Posicion
     public int obtenerPos(T obj){
         int pos = 0;
