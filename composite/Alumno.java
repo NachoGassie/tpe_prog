@@ -4,7 +4,6 @@ import java.util.ArrayList;
 // import tpe.Lista;
 
 public class Alumno extends Elem{
-    private String nombre;
     private String apellido;
     private int edad;
     private int dni;
@@ -12,18 +11,14 @@ public class Alumno extends Elem{
     private ArrayList <String> palabrasClave;
 
     public Alumno(String nombre, String apellido, int edad, int dni) {
-        this.nombre = nombre;
+        super(nombre);
         this.apellido = apellido;
-        this.edad = edad;
         this.dni = dni;
+        this.edad = edad;
+        palabrasClave = new ArrayList<>();
     }
 
-    public Alumno(int edad, int dni, String nombre) {
-        this.edad = edad;
-        this.dni = dni;
-        this.nombre = nombre;
-    }
-
+    @Override
     public int getCantAlum(){
         return 1;
     }
@@ -40,9 +35,6 @@ public class Alumno extends Elem{
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-    public String getNombre() {
-        return nombre;
     }
     public String getApellido() {
         return apellido;

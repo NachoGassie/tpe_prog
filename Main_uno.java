@@ -16,8 +16,8 @@ public class Main_uno {
         }
 
         list.eliminarPos(0);
-        list.eliminarOcur(5);
-        list.eliminarOcur(11);
+        list.eliminarOcurrencia(5);
+        list.eliminarOcurrencia(11);
 
         System.out.println("");
         System.out.println("");
